@@ -1,0 +1,53 @@
+data:
+  train_path: "data/raw/train.csv"
+  later_path: "data/raw/later.csv"
+  holdout_path: "data/raw/holdout_features.csv"
+  target_col: "units_sold"
+  date_col: "date"
+  id_col: "record_id"
+  group_col: "locality"
+  numeric_features:
+    - "flu_cases_reported"
+    - "temp_c"
+    - "nearby_clinics"
+    - "discount_pct"
+    - "stock_lines"
+    - "distance_to_hospital_km"
+  categorical_features:
+    - "shop_type"
+    - "locality"
+
+cleaning:
+  leaking_columns:
+    - "units_billed_in_gst_return"
+  sentinel_col: "stock_lines"
+  sentinel_value: -1
+  shop_type_col: "shop_type"
+
+mlflow:
+  tracking_uri: "sqlite:///mlflow.db"
+  experiment_name: "mp263_pharmacy_sales"
+  registered_model_name: "mp263_pharmacy_model"
+
+training:
+  test_size: 0.2
+  random_state: 42
+  model_output_path: "models/model.joblib"
+  models:
+    ridge:
+      alpha: 1.0
+    random_forest:
+      n_estimators: 200
+      max_depth: 12
+      random_state: 42
+    gradient_boosting:
+      n_estimators: 200
+      learning_rate: 0.05
+      max_depth: 4
+      random_state: 42
+
+monitoring:
+  psi_bins: 10
+  retrain_split_ratio: 0.7
+  promotion_min_improvement: 0.15
+  predictions_output_path: "predictions/holdout_predictions.csv"
