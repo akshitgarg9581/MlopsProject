@@ -68,3 +68,5 @@ def predict(payload: PredictRequest) -> dict:
     pred = float(model.predict(features)[0])
     logger.info("prediction_served", extra={"prediction": round(pred, 4)})
     return {"prediction": pred}
+    
+    
