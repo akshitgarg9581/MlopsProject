@@ -41,22 +41,22 @@ tracking:
   experiment_name: "mp263_pharmacy_sales"
   best_run_id: "f0432815e3814d65b3f807eb88e8bf75"
   registered_model_name: "mp263_pharmacy_model"
-  champion_version: 1
+  champion_version: 2
 
 monitoring:
   psi:                     # cleaned train.csv vs later.csv, 10 bins
-    flu_cases_reported: null
-    temp_c: null
-    nearby_clinics: null
-    discount_pct: null
-    stock_lines: null
-    distance_to_hospital_km: null
-  most_drifted_feature: null
+    flu_cases_reported: 5.4314
+    temp_c: 0.0538
+    nearby_clinics: 0.0483
+    discount_pct: 0.0243
+    stock_lines: 0.063
+    distance_to_hospital_km: 0.0124
+  most_drifted_feature: "flu_cases_reported"
   mae_by_group:            # v1 on later.csv, per value of locality
-    'Old Town': null
-    'New Town': null
-    'Cantonment': null
-  worst_served_group: null
-  mae_v1_on_check: null    # v1 on the last 30% of later.csv (by date)
-  mae_v2_on_check: null    # v2 on the same rows
-  decision: null           # promote or keep
+    'Old Town': 34.0758
+    'New Town': 186.8968
+    'Cantonment': 38.2384
+  worst_served_group: "New Town"
+  mae_v1_on_check: 87.7554
+  mae_v2_on_check: 48.9229
+  decision: "promote"
